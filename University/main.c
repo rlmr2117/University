@@ -4,15 +4,16 @@
 #include "euclid.h"
 
 int main() {
-	clock_t start_time = 0, end_time = 0;
-	double result;
-	int i = 0;
+    time_t start_time = 0, end_time = 0;
+    double result;
+    int i = 0;
 
-	start_time = clock();
-	test_Euclid();
-	end_time = clock();
+    start_time = time(NULL);
+    test_Euclid();
+    end_time = time(NULL);
 
-	result = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
-	printf("총 소요 시간 : %lf \n", result);
-	
+    result = difftime(end_time, start_time);
+    printf("총 소요 시간 : %lf 초\n", result);
+
+    return 0;
 }

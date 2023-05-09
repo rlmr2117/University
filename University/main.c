@@ -1,19 +1,56 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include "euclid.h"
+#include <stdio.h>
 
-int main() {
-    time_t start_time = 0, end_time = 0;
-    double result;
-    int i = 0;
 
-    start_time = time(NULL);
-    test_Euclid();
-    end_time = time(NULL);
+typedef struct _Node {
+	int value;
+	Node* left;
+	Node* right;
+} Node;
 
-    result = difftime(end_time, start_time);
-    printf("총 소요 시간 : %lf 초\n", result);
+Node* root;
 
-    return 0;
+Node* createNode(int val) {
+	Node* pNode = (Node *)malloc(sizeof(Node));
+
+	pNode->value = val;
+	pNode->left = NULL;
+	pNode->right = NULL;
+	
+	return pNode;
+}
+
+Node * connectChild(Node* parent, Node* left, Node* right) {
+	if (parent == NULL) return NULL;
+
+	parent->left = left;
+	parent->right = right;
+	return parent;
+
+}
+
+Node * makeTree() {
+	Node* pRoot = NULL;
+	Node* tLeft = NULL;
+	Node* tRight = NULL;
+
+	pRoot = createNode(100);
+	tLeft = createNode(200);
+	tRight = createNode(300);
+
+	connectChild(pRoot, tLeft, tRight);
+
+	connectChild(tRight, createNode(400), createNode(500));
+
+
+	return pRoot;
+}
+
+void printTree(Node* root) {
+	if (root == NULL) return;
+	
+	printf("Node : %d\t", root->value);
+	printTree(root->left);
+	printTree(root->right);
+
 }

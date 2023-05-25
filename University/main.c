@@ -34,8 +34,9 @@ void floydWarshall(int graph[5][5]) {
     for (i = 0; i < 5; i++) {
         for (j = 0; j < 5; j++) {
             if (i != j)
-                printf("°æ·Î %c -> %c: %d\n", i + 'a', j + 'a', tmp[i][j]);
+                printf("%c -> %c: %d\t", i + 'a', j + 'a', tmp[i][j]);
         }
+        printf("\n");
     }
 }
 
